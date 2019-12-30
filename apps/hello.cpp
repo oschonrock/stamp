@@ -5,6 +5,11 @@
 
 using triple = std::tuple<int, int, int>;
 
+// http://realtimecollisiondetection.net/blog/?p=89
+bool equal(double x, double y) {
+  return std::abs(x - y) <= std::numeric_limits<double>::epsilon() * std::max(1.0, std::max(std::abs(x), std::abs(y)));
+}
+
 bool are_multiples(triple a, triple b) {
   auto [xa, ya, za] = a;
   auto [xb, yb, zb] = b;
@@ -12,9 +17,9 @@ bool are_multiples(triple a, triple b) {
   auto rat_y = static_cast<double>(ya) / yb;
   auto rat_z = static_cast<double>(za) / zb;
   return
-      std::abs(rat_x - rat_y) <= std::numeric_limits<double>::epsilon() &&
-      std::abs(rat_x - rat_z) <= std::numeric_limits<double>::epsilon() &&
-      std::abs(rat_y - rat_z) <= std::numeric_limits<double>::epsilon();
+      equal(rat_x, rat_y) &&
+      equal(rat_x, rat_z) &&
+      equal(rat_y, rat_z);
 }
 
 bool exists(const std::vector<triple>& existing, triple n) {
@@ -32,8 +37,8 @@ int main(int argc, char* argv[]) {
   }
   int n = std::atoi(argv[1]); // NOLINT
 
-  if (n < 2) {
-    std::cerr << "N should be 2 or greater\n";
+  if (n < 1) {
+    std::cerr << "N should be 1 or greater\n";
   }
 
   std::cout << "Finding top " << n << " Pythagorean triples\n";
