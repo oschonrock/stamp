@@ -5,8 +5,22 @@ inline bool is_pythag_multiple(int x, int y, int z) noexcept { return std::gcd(s
 
 inline bool is_pythag_triple(int x, int y, int z) noexcept { return x * x + y * y == z * z; }
 
+template <typename F>
+inline void find_pythag_triples(int n, F&& action) {
+  int count = 0;
+  for (int z = 1;; ++z) {
+    for (int x = 1; x != z + 1; ++x) {
+      for (int y = x; y != z + 1; ++y) {
+        if (is_pythag_triple(x, y, z) && !is_pythag_multiple(x, y, z)) {
+          action(x, y, z);
+          if (++count == n) return;
+        }
+      }
+    }
+  }
+}
+
 int main(int argc, char* argv[]) {
-  auto name = std::string{};
   if (argc < 2) {
     std::cerr << "Usage: " << argv[0] << " TopN\n"; // NOLINT
     return EXIT_FAILURE;
@@ -19,16 +33,5 @@ int main(int argc, char* argv[]) {
 
   std::cout << "Finding top " << n << " Pythagorean triples\n";
 
-  int count = 0;
-  for (int z = 1;; ++z) {
-    for (int x = 1; x != z + 1; ++x) {
-      for (int y = x; y != z + 1; ++y) {
-        if (is_pythag_triple(x,y,z) && !is_pythag_multiple(x, y, z)) {
-            std::cout << '(' << x << ',' << y << ',' << z << ')' << '\n';
-            if (++count == n) return EXIT_SUCCESS;
-        }
-      }
-    }
-  }
-  return EXIT_FAILURE;
+  find_pythag_triples(n, [](int x, int y, int z) { std::cout << '(' << x << ',' << y << ',' << z << ')' << '\n'; });
 }
