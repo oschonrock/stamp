@@ -36,18 +36,18 @@ def get_version():
         return None
 
 
-class ReangesTestConan(ConanFile):
-    name = "ranges-test"
+class StampConan(ConanFile):
+    name = "CHANGEME"
     version = get_version()
-    author = "Oliver Schonrock"
+    author = "CHANGEME"
     license = "GPL"
     url = "none"
-    description = "Ranges perf test"
+    description = "Stamp is a boilerplate temlate for c++ projects - CHANGEME"
     exports = ["LICENSE.md"]
     exports_sources = ["src/*", "test/*", "cmake/*", "example/*","CMakeLists.txt"]
     settings = "os", "compiler", "build_type", "arch"
     requires = (
-        "range-v3/0.10.0@ericniebler/stable",
+        # "range-v3/0.10.0@ericniebler/stable",
     )
     generators = "cmake"
 
