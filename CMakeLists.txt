@@ -35,8 +35,8 @@ conan_init(cmake)
 # compilation options and flags used in a project development process
 include(warnings)
 
-add_executable(hello apps/hello.cpp)
-target_include_directories(hello PUBLIC include include/toolbelt )
+add_executable(pytrip apps/pytrip.cpp)
+target_include_directories(pytrip PUBLIC include include/toolbelt )
 # target_link_libraries(rangestest PUBLIC CONAN_PKG::range-v3)
-target_compile_features(hello PUBLIC cxx_std_17)
-target_compile_options(hello PUBLIC -O3 -Wall -Wextra)
+target_compile_features(pytrip PUBLIC cxx_std_17)
+target_compile_options(pytrip PUBLIC -O3 -Wall -Wextra)
