@@ -1,3 +1,6 @@
 [submodule "include/toolbelt"]
 	path = include/toolbelt
 	url = https://github.com/oschonrock/toolbelt
+[submodule "cmake"]
+	path = cmake
+	url = https://github.com/oschonrock/cmake-scripts
