@@ -20,27 +20,23 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.16.2)
 project(rangestest)
 
 # set path to custom cmake modules
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake-scripts/cmake")
 
 # include common tools and workarounds
-include(common/cmake/tools)
+include(scripts)
 
 # use Conan configuration if available
 conan_init(cmake)
 
 # compilation options and flags used in a project development process
-include(common/cmake/compile_flags)
+include(warnings)
 
-add_executable(rangestest rangestest.cpp)
-target_link_libraries(rangestest PUBLIC CONAN_PKG::range-v3)
-target_compile_features(rangestest PUBLIC cxx_std_17)
-target_compile_options(rangestest PUBLIC -O3 -Wall -Wextra)
-
-add_executable(stltest stltest.cpp)
-target_include_directories(stltest PUBLIC include flat_hash_map )
-target_compile_features(stltest PUBLIC cxx_std_17)
-target_compile_options(stltest PUBLIC -O3 -Wall -Wextra)
+add_executable(hello apps/hello.cpp)
+target_include_directories(hello PUBLIC include include/toolbelt )
+# target_link_libraries(rangestest PUBLIC CONAN_PKG::range-v3)
+target_compile_features(hello PUBLIC cxx_std_17)
+target_compile_options(hello PUBLIC -O3 -Wall -Wextra)
