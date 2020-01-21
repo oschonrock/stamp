@@ -4,3 +4,9 @@
 [submodule "cmake-scripts"]
 	path = cmake-scripts
 	url = https://github.com/oschonrock/cmake-scripts
+[submodule "benchmark"]
+	path = benchmark
+	url = https://github.com/google/benchmark.git
+[submodule "include/flat_hash_map"]
+	path = include/flat_hash_map
+	url = https://github.com/skarupke/flat_hash_map
