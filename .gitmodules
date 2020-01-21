@@ -10,3 +10,6 @@
 [submodule "include/flat_hash_map"]
 	path = include/flat_hash_map
 	url = https://github.com/skarupke/flat_hash_map
+[submodule "include/ryu"]
+	path = include/ryu
+	url = https://github.com/ulfjack/ryu
