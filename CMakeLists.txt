@@ -32,11 +32,13 @@ include(scripts)
 # use Conan configuration if available
 conan_init(cmake)
 
-# compilation options and flags used in a project development process
-include(warnings)
+set(CMAKE_CXX_STANDARD 17)
+add_compile_options(-g -O3 -Wall -Wextra)
 
-add_executable(pytrip apps/pytrip.cpp)
-target_include_directories(pytrip PUBLIC include include/toolbelt )
-# target_link_libraries(rangestest PUBLIC CONAN_PKG::range-v3)
-target_compile_features(pytrip PUBLIC cxx_std_17)
-target_compile_options(pytrip PUBLIC -O3 -Wall -Wextra)
+# this is not nice, but needed to add gv to includes in compiler_database for .hpp files which drives clangd highlighting
+# include_directories(include include/toolbelt include/ryu /usr/include/graphviz)
+
+# find_package(libmongocxx REQUIRED)
+# add_executable(translupe apps/translupe.cpp)
+# target_link_libraries(translupe PUBLIC ${LIBMONGOCXX_LIBRARIES} cgraph gvc)
+# target_include_directories(translupe PUBLIC ${LIBMONGOCXX_INCLUDE_DIRS} /usr/include/graphviz)
